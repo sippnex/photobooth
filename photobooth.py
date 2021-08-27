@@ -2,10 +2,11 @@ import flask
 from flask import Flask, render_template, make_response
 import subprocess
 from subprocess import Popen
-from flask import send_file
 import os
 import base64
+import time
 
+pwd='pi'
 app = Flask(__name__)
 
 subprocess.call('gphoto2 --set-config capturetarget=1', shell=True)
@@ -29,10 +30,16 @@ def photo_page():
 
 @app.route('/api/take-photo')
 def api_take_photo():
+    cmd = 'sudo java -jar DenkoviRelayCommandLineTool.jar 0001692504 4v2 1 1'
+    subprocess.call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
+    time.sleep(1)
     p = Popen(['gphoto2','--capture-image-and-download', '--keep'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
     output, errors = p.communicate()
     output
     errors
+    time.sleep(1)
+    cmd = 'sudo java -jar DenkoviRelayCommandLineTool.jar 0001692504 4v2 1 0'
+    subprocess.call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
     return make_response('', 200)
 
 @app.route('/api/photo', methods=['GET'])
