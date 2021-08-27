@@ -3,6 +3,9 @@ showLandingPage();
 document.addEventListener('mousedown', () => {
     showCountdownPage();
 });
+document.addEventListener('touchstart', () => {
+    showCountdownPage();
+});
 
 function showLandingPage() {
     document.querySelector('#landing-page').style.display = 'flex';
@@ -14,6 +17,11 @@ function showCountdownPage() {
     document.querySelector('#landing-page').style.display = 'none';
     document.querySelector('#countdown-page').style.display = 'flex';
     document.querySelector('#photo-page').style.display = 'none';
+    document.querySelector("#countdown-flash").style.display = 'none';
+
+    const ledOnRequest = new XMLHttpRequest();
+    ledOnRequest.open("GET", "/api/led-on", true);
+    ledOnRequest.send();
 
     const preview = document.querySelector("#countdown-preview");
     if (navigator.mediaDevices.getUserMedia) {
