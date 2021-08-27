@@ -1,19 +1,18 @@
 showLandingPage();
 
-document.addEventListener('mousedown', () => {
+function onClickLandingPage() {
     showCountdownPage();
-});
-document.addEventListener('touchstart', () => {
-    showCountdownPage();
-});
+}
 
 function showLandingPage() {
     document.querySelector('#landing-page').style.display = 'flex';
     document.querySelector('#countdown-page').style.display = 'none';
     document.querySelector('#photo-page').style.display = 'none';
+    document.addEventListener('mousedown', onClickLandingPage);
 }
 
 function showCountdownPage() {
+    document.removeEventListener('mousedown', onClickLandingPage)
     document.querySelector('#landing-page').style.display = 'none';
     document.querySelector('#countdown-page').style.display = 'flex';
     document.querySelector('#photo-page').style.display = 'none';
