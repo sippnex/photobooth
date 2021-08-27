@@ -8,11 +8,11 @@ function showLandingPage() {
     document.querySelector('#landing-page').style.display = 'flex';
     document.querySelector('#countdown-page').style.display = 'none';
     document.querySelector('#photo-page').style.display = 'none';
-    document.addEventListener('mousedown', onClickLandingPage);
+    document.addEventListener('touchstart', onClickLandingPage);
 }
 
 function showCountdownPage() {
-    document.removeEventListener('mousedown', onClickLandingPage)
+    document.removeEventListener('touchstart', onClickLandingPage)
     document.querySelector('#landing-page').style.display = 'none';
     document.querySelector('#countdown-page').style.display = 'flex';
     document.querySelector('#photo-page').style.display = 'none';
@@ -62,6 +62,8 @@ function showPhotoPage() {
     document.querySelector('#landing-page').style.display = 'none';
     document.querySelector('#countdown-page').style.display = 'none';
     document.querySelector('#photo-page').style.display = 'flex';
+    document.querySelector('#photo-preview').src = '';
+    document.querySelector('#photo-countdown').innerHTML = '10';
 
     const getPhotoRequest = new XMLHttpRequest();
     getPhotoRequest.open("GET", "/api/photo", true);
