@@ -9,7 +9,9 @@
             <h1>Bitte lächeln</h1>
             <img src="{{ url_for('static', filename='happy2.png') }}">
         </div>
-        <video id="countdown-preview" autoplay="true"></video>
+        <div id="countdown-preview-container">
+            <video id="countdown-preview" autoplay="true"></video>
+        </div>
         <div id="countdown-text"></div>
         <script src="{{ url_for('static', filename='countdown-page.js') }}"></script>
     </body>

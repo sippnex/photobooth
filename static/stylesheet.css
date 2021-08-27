@@ -36,10 +36,18 @@ h1 {
     margin-left: 10px;
 }
 
-#countdown-preview {
+#countdown-preview-container {
     height: 70%;
+    width: 70%;
     margin-top: 20px;
-    transform: rotate(180deg);
+    overflow: hidden;
+}
+
+#countdown-preview {
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+    transform: rotate(180deg) scale(1.5);
 }
 
 #countdown-text {
