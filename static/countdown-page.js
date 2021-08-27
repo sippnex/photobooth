@@ -6,13 +6,13 @@ if (navigator.mediaDevices.getUserMedia) {
       const countdown = document.querySelector("#countdown-text");
       countdown.innerHTML = '5';
       setTimeout(() => countdown.innerHTML = '4', 1000);
-      setTimeout(() => countdown.innerHTML = '3', 2000);
       setTimeout(() => {
-        countdown.innerHTML = '2';
+        countdown.innerHTML = '3';
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", "/api/led-on", true);
         xhttp.send();
-      }, 3000);
+      }, 2000);
+      setTimeout(() => countdown.innerHTML = '2', 3000);
       setTimeout(() => countdown.innerHTML = '1', 4000);
       setTimeout(() => {
         countdown.innerHTML = '';
