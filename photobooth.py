@@ -4,7 +4,6 @@ import subprocess
 from subprocess import Popen
 import os
 import base64
-import time
 
 pwd='pi'
 app = Flask(__name__)
@@ -19,7 +18,6 @@ def index_page():
 def landing_page():
     return render_template('landing-page.html')
 
-
 @app.route('/countdown-page')
 def countdown_page():
     return render_template('countdown-page.html')
@@ -30,16 +28,10 @@ def photo_page():
 
 @app.route('/api/take-photo')
 def api_take_photo():
-    cmd = 'sudo java -jar DenkoviRelayCommandLineTool.jar 0001692504 4v2 1 1'
-    subprocess.call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
-    time.sleep(1)
     p = Popen(['gphoto2','--capture-image-and-download', '--keep'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
     output, errors = p.communicate()
     output
     errors
-    time.sleep(1)
-    cmd = 'sudo java -jar DenkoviRelayCommandLineTool.jar 0001692504 4v2 1 0'
-    subprocess.call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
     return make_response('', 200)
 
 @app.route('/api/photo', methods=['GET'])
@@ -59,3 +51,15 @@ def api_delete_photo():
             os.remove(file)
             return make_response('', 200)
     return make_response('No suitable image found', 404)
+
+@app.route('/api/led-on')
+def api_led_on():
+    cmd = 'sudo java -jar DenkoviRelayCommandLineTool.jar 0001692504 4v2 1 1'
+    subprocess.call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
+    return make_response('', 200)
+
+@app.route('/api/led-off')
+def api_led_off():
+    cmd = 'sudo java -jar DenkoviRelayCommandLineTool.jar 0001692504 4v2 1 0'
+    subprocess.call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
+    return make_response('', 200)
