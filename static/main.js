@@ -9,6 +9,9 @@ function showLandingPage() {
     document.querySelector('#countdown-page').style.display = 'none';
     document.querySelector('#photo-page').style.display = 'none';
     document.addEventListener('touchstart', onClickLandingPage);
+    const ledOffRequest = new XMLHttpRequest();
+    ledOffRequest.open("GET", "/api/led-off", true);
+    ledOffRequest.send();
 }
 
 function showCountdownPage() {
