@@ -63,3 +63,6 @@ def api_led_off():
     cmd = 'sudo java -jar DenkoviRelayCommandLineTool.jar 0001692504 4v2 1 0'
     subprocess.call('echo {} | sudo -S {}'.format(pwd, cmd), shell=True)
     return make_response('', 200)
+
+if __name__ == '__main__':
+    app.run(debug=False)
