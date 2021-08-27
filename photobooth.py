@@ -8,10 +8,9 @@ import base64
 pwd='pi'
 app = Flask(__name__)
 
-subprocess.call('gphoto2 --set-config capturetarget=1', shell=True)
-
 @app.route('/')
 def index_page():
+    subprocess.call('gphoto2 --set-config capturetarget=1', shell=True)
     return flask.redirect(flask.url_for('landing_page'))
 
 @app.route('/landing-page')
