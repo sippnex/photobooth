@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <title>Fotobox</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+    </head>
+    <body>
+        <div id="landing-page">
+            <h1 id="landing-title">Drücke auf den Bildschirm und mache ein Selfie!</h1>
+        </div>
+        <div id="countdown-page">
+            <div id="countdown-title">
+                <h1>Bitte lächeln</h1>
+                <img src="{{ url_for('static', filename='happy2.png') }}">
+            </div>
+            <div id="countdown-preview-container">
+                <video id="countdown-preview" autoplay="true"></video>
+                <div id="countdown-flash"></div>
+            </div>
+            <div id="countdown-text"></div>
+        </div>
+        <div id="photo-page">
+            <h1>Euer Foto (<span id="photo-countdown"></span>)</h1>
+            <img id="photo-preview"></img>
+        </div>
+        <script src="{{ url_for('static', filename='main.js') }}"></script>
+    </body>
+</html>

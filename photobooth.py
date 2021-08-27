@@ -10,20 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index_page():
-    subprocess.call('gphoto2 --set-config capturetarget=1', shell=True)
-    return flask.redirect(flask.url_for('landing_page'))
-
-@app.route('/landing-page')
-def landing_page():
-    return render_template('landing-page.html')
-
-@app.route('/countdown-page')
-def countdown_page():
-    return render_template('countdown-page.html')
-
-@app.route('/photo-page')
-def photo_page():
-    return render_template('photo-page.html')
+    return render_template('index.html')
 
 @app.route('/api/take-photo')
 def api_take_photo():
@@ -64,4 +51,5 @@ def api_led_off():
     return make_response('', 200)
 
 if __name__ == '__main__':
+    subprocess.call('gphoto2 --set-config capturetarget=1', shell=True)
     app.run(debug=False)
