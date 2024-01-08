@@ -4,6 +4,7 @@ import subprocess
 from subprocess import Popen
 import os
 import base64
+import time
 
 pwd='pi'
 app = Flask(__name__)
@@ -24,7 +25,7 @@ def api_take_photo():
 def api_get_photo():
     files = os.listdir('.')
     for file in files:
-        if file.endswith('.JPG'):
+        if file.endswith('.JPG') and (time.time() - os.path.getmtime(file) > 10):
             with open(file, 'rb') as fh:
                 return make_response(base64.b64encode(fh.read()), 200)
     return make_response('No suitable image found', 404)
