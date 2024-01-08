@@ -36,8 +36,7 @@ def api_delete_photo():
     for file in files:
         if file.endswith('.JPG'):
             os.remove(file)
-            return make_response('', 200)
-    return make_response('No suitable image found', 404)
+    return make_response('', 200)
 
 @app.route('/api/led-on')
 def api_led_on():
